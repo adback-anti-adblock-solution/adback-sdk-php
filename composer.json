@@ -1,0 +1,28 @@
+{
+    "name": "dekalee/adback-analytics",
+    "description": "A php lib to call the AdBack api",
+    "type": "library",
+    "license": "Apache-2.0",
+    "require": {
+        "jms/serializer": "~1.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0",
+        "henrikbjorn/phpspec-code-coverage": "^2.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dekalee\\AdbackAnalytics\\": "src/AdbackAnalytics"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nicolas Thal",
+            "email": "nico.th4l@gmail.com"
+        }
+    ]
+}
