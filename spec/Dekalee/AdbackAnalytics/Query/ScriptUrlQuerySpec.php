@@ -4,9 +4,7 @@ namespace spec\Dekalee\AdbackAnalytics\Query;
 
 use Dekalee\AdbackAnalytics\Driver\ScriptCacheInterface;
 use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
-use Dekalee\AdbackAnalytics\Facade\ScriptUrlFacade;
 use GuzzleHttp\Client;
-use JMS\Serializer\SerializerInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Http\Message\ResponseInterface;
@@ -15,9 +13,9 @@ class ScriptUrlQuerySpec extends ObjectBehavior
 {
     protected  $token = 'token';
 
-    function let(Client $client, ScriptCacheInterface $cache, SerializerInterface $serializer)
+    function let(Client $client, ScriptCacheInterface $cache)
     {
-        $this->beConstructedWith($client, $cache, $serializer, $this->token);
+        $this->beConstructedWith($client, $cache, $this->token);
     }
 
     function it_is_initializable()
@@ -28,8 +26,6 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_store_answer(
         Client $client,
         ScriptCacheInterface $cache,
-        SerializerInterface $serializer,
-        ScriptUrlFacade $scriptUrlFacade,
         ResponseInterface $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
@@ -40,14 +36,6 @@ class ScriptUrlQuerySpec extends ObjectBehavior
             'message_script' => 'message_script',
         ]));
         $response->getStatusCode()->willReturn(200);
-
-
-        $scriptUrlFacade->analyticsDomain = 'analytics_domain';
-        $scriptUrlFacade->analyticsScript = 'analytics_script';
-        $scriptUrlFacade->messageDomain = 'message_domain';
-        $scriptUrlFacade->messageScript = 'message_script';
-
-        $serializer->deserialize(Argument::any(), ScriptUrlFacade::CLASS, 'json')->willReturn($scriptUrlFacade);
 
         $cache->setAnalyticsUrl('analytics_domain')->shouldBeCalled();
         $cache->setAnalyticsScript('analytics_script')->shouldBeCalled();
@@ -60,8 +48,6 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_store_message_and_clear_analytics(
         Client $client,
         ScriptCacheInterface $cache,
-        SerializerInterface $serializer,
-        ScriptUrlFacade $scriptUrlFacade,
         ResponseInterface $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
@@ -70,11 +56,6 @@ class ScriptUrlQuerySpec extends ObjectBehavior
             'message_script' => 'message_script',
         ]));
         $response->getStatusCode()->willReturn(200);
-
-        $scriptUrlFacade->messageDomain = 'message_domain';
-        $scriptUrlFacade->messageScript = 'message_script';
-
-        $serializer->deserialize(Argument::any(), ScriptUrlFacade::CLASS, 'json')->willReturn($scriptUrlFacade);
 
         $cache->setAnalyticsUrl(Argument::any())->shouldNotBeCalled();
         $cache->setAnalyticsScript(Argument::any())->shouldNotBeCalled();
@@ -88,8 +69,6 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_store_analytics_and_clear_messages(
         Client $client,
         ScriptCacheInterface $cache,
-        SerializerInterface $serializer,
-        ScriptUrlFacade $scriptUrlFacade,
         ResponseInterface $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
@@ -98,11 +77,6 @@ class ScriptUrlQuerySpec extends ObjectBehavior
             'analytics_script' => 'analytics_script',
         ]));
         $response->getStatusCode()->willReturn(200);
-
-        $scriptUrlFacade->analyticsDomain = 'analytics_domain';
-        $scriptUrlFacade->analyticsScript = 'analytics_script';
-
-        $serializer->deserialize(Argument::any(), ScriptUrlFacade::CLASS, 'json')->willReturn($scriptUrlFacade);
 
         $cache->setAnalyticsUrl('analytics_domain')->shouldBeCalled();
         $cache->setAnalyticsScript('analytics_script')->shouldBeCalled();
