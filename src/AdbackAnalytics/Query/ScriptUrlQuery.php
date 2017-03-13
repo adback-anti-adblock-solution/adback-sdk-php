@@ -2,8 +2,8 @@
 
 namespace Dekalee\AdbackAnalytics\Query;
 
+use Dekalee\AdbackAnalytics\Client\Client;
 use Dekalee\AdbackAnalytics\Driver\ScriptCacheInterface;
-use GuzzleHttp\Client;
 
 /**
  * Class ScriptUrlQuery

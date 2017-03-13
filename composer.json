@@ -4,7 +4,7 @@
     "type": "library",
     "license": "Apache-2.0",
     "require": {
-        "guzzlehttp/guzzle": "~6.0"
+        "php": ">=5.3.3"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",

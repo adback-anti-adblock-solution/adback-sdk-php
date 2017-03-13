@@ -2,16 +2,16 @@
 
 namespace spec\Dekalee\AdbackAnalytics\Query;
 
+use Dekalee\AdbackAnalytics\Client\Client;
+use Dekalee\AdbackAnalytics\Client\Response;
 use Dekalee\AdbackAnalytics\Driver\ScriptCacheInterface;
 use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
-use GuzzleHttp\Client;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Psr\Http\Message\ResponseInterface;
 
 class ScriptUrlQuerySpec extends ObjectBehavior
 {
-    protected  $token = 'token';
+    protected  $token = 'code';
 
     function let(Client $client, ScriptCacheInterface $cache)
     {
@@ -26,7 +26,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_store_answer(
         Client $client,
         ScriptCacheInterface $cache,
-        ResponseInterface $response
+        Response $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getBody()->willReturn(json_encode([
@@ -48,7 +48,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_store_message_and_clear_analytics(
         Client $client,
         ScriptCacheInterface $cache,
-        ResponseInterface $response
+        Response $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getBody()->willReturn(json_encode([
@@ -69,7 +69,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_store_analytics_and_clear_messages(
         Client $client,
         ScriptCacheInterface $cache,
-        ResponseInterface $response
+        Response $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getBody()->willReturn(json_encode([
@@ -90,7 +90,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_should_call_script_api_and_not_store_answer_if_there_is_an_error(
         Client $client,
         ScriptCacheInterface $cache,
-        ResponseInterface $response
+        Response $response
     ) {
         $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getStatusCode()->willReturn(201);
