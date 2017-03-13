@@ -11,7 +11,7 @@ use Prophecy\Argument;
 
 class ScriptUrlQuerySpec extends ObjectBehavior
 {
-    protected  $token = 'code';
+    protected  $token = 'token';
 
     function let(Client $client, ScriptCacheInterface $cache)
     {
