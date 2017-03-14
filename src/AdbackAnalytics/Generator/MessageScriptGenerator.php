@@ -21,11 +21,10 @@ class MessageScriptGenerator extends AbstractScriptGenerator implements ScriptGe
 
         $script = <<<EOS
 (function (a,d){var s,t,u;s=d.createElement('script');
-    if(d.referrer){u=d.createElement('a');u.href=d.referrer;a=a+u.hostname;}
     s.src=a;s.async=1;
     t=d.getElementsByTagName('script')[0];
     t.parentNode.insertBefore(s,t);
-})("https://$url/$script.js?ref=", document);
+})("https://$url/$script.js", document);
 EOS;
 
         return $script;
