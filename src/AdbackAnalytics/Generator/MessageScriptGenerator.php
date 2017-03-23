@@ -20,7 +20,7 @@ class MessageScriptGenerator extends AbstractScriptGenerator implements ScriptGe
         $script = $this->cache->getMessageScript();
 
         $script = <<<EOS
-(function (a,d){var s,t,u;s=d.createElement('script');
+(function (a,d){var s,t;s=d.createElement('script');
     s.src=a;s.async=1;
     t=d.getElementsByTagName('script')[0];
     t.parentNode.insertBefore(s,t);
