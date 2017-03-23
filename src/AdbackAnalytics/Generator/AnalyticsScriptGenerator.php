@@ -8,11 +8,9 @@ namespace Dekalee\AdbackAnalytics\Generator;
 class AnalyticsScriptGenerator extends AbstractScriptGenerator implements ScriptGeneratorInterface
 {
     /**
-     * @param int $id
-     *
      * @return string
      */
-    public function generate($id)
+    public function generate()
     {
         if (!$this->cache->isAnalyticsConfigured()) {
             return '';

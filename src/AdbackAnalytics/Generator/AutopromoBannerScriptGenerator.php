@@ -12,8 +12,12 @@ class AutopromoBannerScriptGenerator extends AbstractScriptGenerator implements 
      *
      * @return string
      */
-    public function generate($id)
+    public function generate($id = null)
     {
+        if(is_null($id)) {
+            // TODO throw exception
+        }
+
         if (!$this->cache->isAutopromoBannerConfigured()) {
             return '';
         }

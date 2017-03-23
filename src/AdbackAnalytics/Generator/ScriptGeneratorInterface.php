@@ -8,9 +8,7 @@ namespace Dekalee\AdbackAnalytics\Generator;
 interface ScriptGeneratorInterface
 {
     /**
-     * @param int $id
-     *
      * @return string
      */
-    public function generate($id);
+    public function generate();
 }
