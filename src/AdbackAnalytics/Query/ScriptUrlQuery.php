@@ -64,5 +64,12 @@ class ScriptUrlQuery
         } else {
             $this->cache->clearMessageData();
         }
+
+        if (array_key_exists('autopromo_banner_domain', $scriptUrlFacade) && null != $scriptUrlFacade['autopromo_banner_domain']) {
+            $this->cache->setAutopromoBannerUrl($scriptUrlFacade['autopromo_banner_domain']);
+            $this->cache->setAutopromoBannerScript($scriptUrlFacade['autopromo_banner_script']);
+        } else {
+            $this->cache->clearAutopromoBannerData();
+        }
     }
 }
