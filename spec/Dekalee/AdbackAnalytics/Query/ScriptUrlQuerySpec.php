@@ -34,6 +34,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
             'analytics_script' => 'analytics_script',
             'message_domain' => 'message_domain',
             'message_script' => 'message_script',
+            'autopromo_banner_domain' => 'autopromo_banner_domain',
+            'autopromo_banner_script' => 'autopromo_banner_script',
         ]));
         $response->getStatusCode()->willReturn(200);
 
@@ -41,6 +43,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setAnalyticsScript('analytics_script')->shouldBeCalled();
         $cache->setMessageUrl('message_domain')->shouldBeCalled();
         $cache->setMessageScript('message_script')->shouldBeCalled();
+        $cache->setAutopromoBannerUrl('autopromo_banner_domain')->shouldBeCalled();
+        $cache->setAutopromoBannerScript('autopromo_banner_script')->shouldBeCalled();
 
         $this->execute();
     }
@@ -62,6 +66,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setMessageUrl('message_domain')->shouldBeCalled();
         $cache->setMessageScript('message_script')->shouldBeCalled();
         $cache->clearAnalyticsData()->shouldBeCalled();
+        $cache->clearAutopromoBannerData()->shouldBeCalled();
 
         $this->execute();
     }
@@ -83,6 +88,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setMessageUrl(Argument::any())->shouldNotBeCalled();
         $cache->setMessageScript(Argument::any())->shouldNotBeCalled();
         $cache->clearMessageData()->shouldBeCalled();
+        $cache->clearAutopromoBannerData()->shouldBeCalled();
 
         $this->execute();
     }
@@ -99,6 +105,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setAnalyticsScript(Argument::any())->shouldNotBeCalled();
         $cache->setMessageUrl(Argument::any())->shouldNotBeCalled();
         $cache->setMessageScript(Argument::any())->shouldNotBeCalled();
+        $cache->setAutopromoBannerUrl(Argument::any())->shouldNotBeCalled();
+        $cache->setAutopromoBannerScript(Argument::any())->shouldNotBeCalled();
 
         $this->execute();
     }
