@@ -38,6 +38,11 @@ interface ScriptCacheInterface
     public function isMessageConfigured();
 
     /**
+     * @return bool
+     */
+    public function isAutopromoBannerConfigured();
+
+    /**
      * @param string $domain
      */
     public function setMessageUrl($domain);
@@ -58,6 +63,26 @@ interface ScriptCacheInterface
     public function getMessageScript();
 
     /**
+     * @param string $domain
+     */
+    public function setAutopromoBannerUrl($domain);
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerUrl();
+
+    /**
+     * @param string $script
+     */
+    public function setAutopromoBannerScript($script);
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerScript();
+
+    /**
      * Clear analytics data
      */
     public function clearAnalyticsData();
@@ -66,4 +91,9 @@ interface ScriptCacheInterface
      * Clear message data
      */
     public function clearMessageData();
+
+    /**
+     * Clear autopromo banner data
+     */
+    public function clearAutopromoBannerData();
 }

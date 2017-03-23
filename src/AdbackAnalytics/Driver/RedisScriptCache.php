@@ -66,6 +66,14 @@ class RedisScriptCache implements ScriptCacheInterface
     }
 
     /**
+     * @return bool
+     */
+    public function isAutopromoBannerConfigured()
+    {
+        return $this->redis->exists('adback_autopromo_banner_url');
+    }
+
+    /**
      * @param string $domain
      */
     public function setMessageUrl($domain)
@@ -98,6 +106,38 @@ class RedisScriptCache implements ScriptCacheInterface
     }
 
     /**
+     * @param string $domain
+     */
+    public function setAutopromoBannerUrl($domain)
+    {
+        $this->redis->set('adback_autopromo_banner_url', $domain);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerUrl()
+    {
+        return $this->redis->get('adback_autopromo_banner_url');
+    }
+
+    /**
+     * @param string $script
+     */
+    public function setAutopromoBannerScript($script)
+    {
+        $this->redis->set('adback_autopromo_banner_script', $script);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerScript()
+    {
+        return $this->redis->get('adback_autopromo_banner_script');
+    }
+
+    /**
      * Clear analytics data
      */
     public function clearAnalyticsData()
@@ -111,6 +151,14 @@ class RedisScriptCache implements ScriptCacheInterface
     public function clearMessageData()
     {
         $this->redis->del('adback_message_url', 'adback_message_script');
+    }
+
+    /**
+     * Clear autopromo banner data
+     */
+    public function clearAutopromoBannerData()
+    {
+        $this->redis->del('adback_autopromo_banner_url', 'adback_autopromo_banner_script');
     }
 
 }
