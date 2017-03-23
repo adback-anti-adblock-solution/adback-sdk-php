@@ -2,6 +2,8 @@
 
 namespace Dekalee\AdbackAnalytics\Generator;
 
+use Dekalee\AdbackAnalytics\Exception\AutopromoBannerIdMissing;
+
 /**
  * Class AutopromoBannerScriptGenerator
  */
@@ -11,11 +13,13 @@ class AutopromoBannerScriptGenerator extends AbstractScriptGenerator implements 
      * @param int $id
      *
      * @return string
+     *
+     * @throws AutopromoBannerIdMissing
      */
     public function generate($id = null)
     {
         if(is_null($id)) {
-            // TODO throw exception
+            throw new AutopromoBannerIdMissing();
         }
 
         if (!$this->cache->isAutopromoBannerConfigured()) {
