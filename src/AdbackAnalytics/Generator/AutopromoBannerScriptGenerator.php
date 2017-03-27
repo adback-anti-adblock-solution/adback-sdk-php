@@ -33,7 +33,7 @@ class AutopromoBannerScriptGenerator extends AbstractScriptGenerator implements 
 (function (a,d){var s,t,cs,ds,dd;s=d.createElement('script');cs=d.currentScript;
     ds=d.createElement('span');ds.id=Math.random().toString(36).substring(7);
     dd=cs.parentNode.insertBefore(ds,cs);
-    s.src=a;s.async=1;s.setAttribute('data-dd',ds.id);s.setAttribute('data-id',$id);
+    s.src=a;s.async=1;s.setAttribute('data-name',ds.id);s.setAttribute('data-id',$id);
     t=d.getElementsByTagName('script')[0];t.parentNode.insertBefore(s,t);})
 ("https://$url/$script.js", document);
 EOS;
