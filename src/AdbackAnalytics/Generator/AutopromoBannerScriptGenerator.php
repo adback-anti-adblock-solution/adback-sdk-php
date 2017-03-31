@@ -28,12 +28,13 @@ class AutopromoBannerScriptGenerator extends AbstractScriptGenerator implements 
 
         $url = $this->cache->getAutopromoBannerUrl();
         $script = $this->cache->getAutopromoBannerScript();
+        $encodedId = base64_encode($id);
 
         $script = <<<EOS
 (function (a,d){var s,t,cs,ds,dd;s=d.createElement('script');cs=d.currentScript;
     ds=d.createElement('span');ds.id=Math.random().toString(36).substring(7);
     dd=cs.parentNode.insertBefore(ds,cs);
-    s.src=a;s.async=1;s.setAttribute('data-name',ds.id);s.setAttribute('data-id',$id);
+    s.src=a;s.async=1;s.setAttribute('data-name',ds.id);s.setAttribute('data-id', '$encodedId');
     t=d.getElementsByTagName('script')[0];t.parentNode.insertBefore(s,t);})
 ("https://$url/$script.js", document);
 EOS;
