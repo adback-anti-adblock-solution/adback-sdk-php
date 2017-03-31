@@ -12,6 +12,8 @@ that should be placed on all the pages.
 
 See [the AdBack website](http://adback.co) for more informations.
 
+See [the AdBack documentation](http://docs.adback.co/en/latest/) for an installation guide.
+
 Usage
 -----
 
