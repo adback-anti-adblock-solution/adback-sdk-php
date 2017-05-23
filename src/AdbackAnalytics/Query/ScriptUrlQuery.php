@@ -23,7 +23,7 @@ class ScriptUrlQuery
      * @param string               $apiUrl
      * @param string               $scriptUrl
      */
-    public function __construct(Client $client, ScriptCacheInterface $cache, $token, $apiUrl = 'https://adback.co/api', $scriptUrl = 'script/me')
+    public function __construct(Client $client, ScriptCacheInterface $cache, $token, $apiUrl = 'https://www.adback.co/api', $scriptUrl = 'script/me')
     {
         $this->cache = $cache;
         $this->token = $token;
@@ -58,18 +58,25 @@ class ScriptUrlQuery
             $this->cache->clearAnalyticsData();
         }
 
-        if (array_key_exists('message_domain', $scriptUrlFacade) && null != $scriptUrlFacade['message_domain']) {
+        if (array_key_exists('message_script', $scriptUrlFacade) && null != $scriptUrlFacade['message_script']) {
             $this->cache->setMessageUrl($scriptUrlFacade['message_domain']);
             $this->cache->setMessageScript($scriptUrlFacade['message_script']);
         } else {
             $this->cache->clearMessageData();
         }
 
-        if (array_key_exists('autopromo_banner_domain', $scriptUrlFacade) && null != $scriptUrlFacade['autopromo_banner_domain']) {
+        if (array_key_exists('autopromo_banner_script', $scriptUrlFacade) && null != $scriptUrlFacade['autopromo_banner_script']) {
             $this->cache->setAutopromoBannerUrl($scriptUrlFacade['autopromo_banner_domain']);
             $this->cache->setAutopromoBannerScript($scriptUrlFacade['autopromo_banner_script']);
         } else {
             $this->cache->clearAutopromoBannerData();
+        }
+
+        if (array_key_exists('product_script', $scriptUrlFacade) && null != $scriptUrlFacade['product_script']) {
+            $this->cache->setProductUrl($scriptUrlFacade['product_domain']);
+            $this->cache->setProductScript($scriptUrlFacade['product_script']);
+        } else {
+            $this->cache->clearProductData();
         }
     }
 }
