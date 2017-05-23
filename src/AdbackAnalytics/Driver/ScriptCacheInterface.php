@@ -73,6 +73,16 @@ interface ScriptCacheInterface
     public function getAutopromoBannerUrl();
 
     /**
+     * @param string $domain
+     */
+    public function setProductUrl($domain);
+
+    /**
+     * @return string
+     */
+    public function getProductUrl();
+
+    /**
      * @param string $script
      */
     public function setAutopromoBannerScript($script);
@@ -81,6 +91,17 @@ interface ScriptCacheInterface
      * @return string
      */
     public function getAutopromoBannerScript();
+
+
+    /**
+     * @param string $script
+     */
+    public function setProductScript($script);
+
+    /**
+     * @return string
+     */
+    public function getProductScript();
 
     /**
      * Clear analytics data
@@ -96,4 +117,9 @@ interface ScriptCacheInterface
      * Clear autopromo banner data
      */
     public function clearAutopromoBannerData();
+
+    /**
+     * Clear autopromo banner data
+     */
+    public function clearProductData();
 }

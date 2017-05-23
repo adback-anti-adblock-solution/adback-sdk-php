@@ -28,7 +28,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         ScriptCacheInterface $cache,
         Response $response
     ) {
-        $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
+        $client->get('https://www.adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getBody()->willReturn(json_encode([
             'analytics_domain' => 'analytics_domain',
             'analytics_script' => 'analytics_script',
@@ -36,6 +36,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
             'message_script' => 'message_script',
             'autopromo_banner_domain' => 'autopromo_banner_domain',
             'autopromo_banner_script' => 'autopromo_banner_script',
+            'product_domain' => 'product_domain',
+            'product_script' => 'product_script',
         ]));
         $response->getStatusCode()->willReturn(200);
 
@@ -45,6 +47,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setMessageScript('message_script')->shouldBeCalled();
         $cache->setAutopromoBannerUrl('autopromo_banner_domain')->shouldBeCalled();
         $cache->setAutopromoBannerScript('autopromo_banner_script')->shouldBeCalled();
+        $cache->setProductUrl('product_domain')->shouldBeCalled();
+        $cache->setProductScript('product_script')->shouldBeCalled();
 
         $this->execute();
     }
@@ -54,7 +58,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         ScriptCacheInterface $cache,
         Response $response
     ) {
-        $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
+        $client->get('https://www.adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getBody()->willReturn(json_encode([
             'message_domain' => 'message_domain',
             'message_script' => 'message_script',
@@ -67,6 +71,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setMessageScript('message_script')->shouldBeCalled();
         $cache->clearAnalyticsData()->shouldBeCalled();
         $cache->clearAutopromoBannerData()->shouldBeCalled();
+        $cache->clearProductData()->shouldBeCalled();
 
         $this->execute();
     }
@@ -76,7 +81,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         ScriptCacheInterface $cache,
         Response $response
     ) {
-        $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
+        $client->get('https://www.adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getBody()->willReturn(json_encode([
             'analytics_domain' => 'analytics_domain',
             'analytics_script' => 'analytics_script',
@@ -89,6 +94,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setMessageScript(Argument::any())->shouldNotBeCalled();
         $cache->clearMessageData()->shouldBeCalled();
         $cache->clearAutopromoBannerData()->shouldBeCalled();
+        $cache->clearProductData()->shouldBeCalled();
 
         $this->execute();
     }
@@ -98,7 +104,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         ScriptCacheInterface $cache,
         Response $response
     ) {
-        $client->get('https://adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
+        $client->get('https://www.adback.co/api/script/me?_format=json&access_token=' . $this->token)->willReturn($response);
         $response->getStatusCode()->willReturn(201);
 
         $cache->setAnalyticsUrl(Argument::any())->shouldNotBeCalled();
@@ -107,6 +113,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setMessageScript(Argument::any())->shouldNotBeCalled();
         $cache->setAutopromoBannerUrl(Argument::any())->shouldNotBeCalled();
         $cache->setAutopromoBannerScript(Argument::any())->shouldNotBeCalled();
+        $cache->setProductUrl(Argument::any())->shouldNotBeCalled();
+        $cache->setProductScript(Argument::any())->shouldNotBeCalled();
 
         $this->execute();
     }
