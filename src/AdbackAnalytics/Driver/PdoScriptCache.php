@@ -221,15 +221,15 @@ class PdoScriptCache implements ScriptCacheInterface
      */
     protected function get($key)
     {
-        $request = $this->connection->prepare('SELECT value FROM adback_cache_table WHERE key = :key LIMIT 1');
+        $request = $this->connection->prepare('SELECT our_value FROM adback_cache_table WHERE our_key = :key LIMIT 1');
         $response = $request->execute([
             'key' => $key,
         ]);
 
         $data = $response->fetch();
         $response->closeCursor();
-        if (is_array($data) && array_key_exists('value', $data)) {
-            return $data['value'];
+        if (is_array($data) && array_key_exists('our_value', $data)) {
+            return $data['our_value'];
         }
 
         return null;
@@ -242,7 +242,7 @@ class PdoScriptCache implements ScriptCacheInterface
     protected function set($key, $value)
     {
         $this->clear($key);
-        $request = $this->connection->prepare("INSERT INTO adback_cache_table (key, value) VALUES (:key, :value)");
+        $request = $this->connection->prepare("INSERT INTO adback_cache_table (our_key, our_value) VALUES (:key, :value)");
         $request->execute([
             'key' => $key,
             'value' => $value,
@@ -254,7 +254,7 @@ class PdoScriptCache implements ScriptCacheInterface
      */
     protected function clear($key)
     {
-        $request = $this->connection->prepare("DELETE FROM adback_cache_table WHERE key = :key");
+        $request = $this->connection->prepare("DELETE FROM adback_cache_table WHERE our_key = :key");
         $request->execute([
             'key' => $key,
         ]);
