@@ -26,8 +26,6 @@ A driver for Redis is already available.
 Usage Exemple
 -------------
 
-In this exemple, we would assume that you have access to a Redis data store.
-
 ### Installation
 
 Use composer to install the lib :
@@ -36,7 +34,9 @@ Use composer to install the lib :
     composer require dekalee/adback-analytics
 ```
 
-### Query the api
+### Usage with Redis
+
+#### Query the api
 
 First you need to query the api to warmup the cache in a Redis data store :
 
@@ -59,7 +59,7 @@ First you need to query the api to warmup the cache in a Redis data store :
     createApiCache();
 ```
 
-### Generate the scripts
+#### Generate the scripts
 
 In your page, preferably in the `<head>`, use the generator to create the script :
 
@@ -73,6 +73,61 @@ In your page, preferably in the `<head>`, use the generator to create the script
         $redis->connect('127.0.0.1');
         $redisCache = new RedisScriptCache($redis);
         $generator = new AnalyticsScriptGenerator($redisCache);
+
+        return $generator->generate();
+    }
+
+    echo generateAnalyticsScript();
+```
+
+You could do the same to create the other scripts by using the appropriate generators.
+
+### Usage with MySQL
+
+#### Create the table
+
+To create the table used to store the data in MySQL, run the query:
+
+```sql
+    CREATE TABLE adback_cache_table( our_key varchar(255), our_value varchar(255));
+```
+
+#### Query the api
+
+First you need to query the api to warmup the cache in a Mysql table :
+
+```php
+    use Dekalee\AdbackAnalytics\Client\Client;
+    use Dekalee\AdbackAnalytics\Driver\PdoScriptCache;
+    use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
+
+    function createApiCache()
+    {
+        $client = new Client();
+        $connection = new \PDO('mysql:host=your-database-host;dbname=your-database;charset=utf8', 'login', 'password');
+        $cache = new PdoScriptCache($connection);
+
+        $query = new ScriptUrlQuery($client, $cache, 'your-token');
+        $query->execute();
+    }
+
+    createApiCache();
+```
+
+#### Generate the scripts
+
+In your page, preferably in the `<head>`, use the generator to create the script :
+
+```php
+    use Dekalee\AdbackAnalytics\Generator\AnalyticsScriptGenerator;
+    use Dekalee\AdbackAnalytics\Driver\PdoScriptCache;
+
+
+    function generateAnalyticsScript()
+    {
+        $connection = new \PDO('mysql:host=your-database-host;dbname=your-database;charset=utf8', 'login', 'password');
+        $cache = new PdoScriptCache($connection);
+        $generator = new AnalyticsScriptGenerator($cache);
 
         return $generator->generate();
     }

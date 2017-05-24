@@ -222,12 +222,12 @@ class PdoScriptCache implements ScriptCacheInterface
     protected function get($key)
     {
         $request = $this->connection->prepare('SELECT our_value FROM adback_cache_table WHERE our_key = :key LIMIT 1');
-        $response = $request->execute([
+        $request->execute([
             'key' => $key,
         ]);
 
-        $data = $response->fetch();
-        $response->closeCursor();
+        $data = $request->fetch();
+        $request->closeCursor();
         if (is_array($data) && array_key_exists('our_value', $data)) {
             return $data['our_value'];
         }
