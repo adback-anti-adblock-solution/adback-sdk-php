@@ -92,7 +92,9 @@ To create the table used to store the data in MySQL, run the query:
     CREATE TABLE adback_cache_table( our_key varchar(255), our_value varchar(255));
 ```
 
-#### Query the api
+#### With the PDO driver
+
+##### Query the api
 
 First you need to query the api to warmup the cache in a Mysql table :
 
@@ -114,7 +116,7 @@ First you need to query the api to warmup the cache in a Mysql table :
     createApiCache();
 ```
 
-#### Generate the scripts
+##### Generate the scripts
 
 In your page, preferably in the `<head>`, use the generator to create the script :
 
@@ -127,6 +129,53 @@ In your page, preferably in the `<head>`, use the generator to create the script
     {
         $connection = new \PDO('mysql:host=your-database-host;dbname=your-database;charset=utf8', 'login', 'password');
         $cache = new PdoScriptCache($connection);
+        $generator = new AnalyticsScriptGenerator($cache);
+
+        return $generator->generate();
+    }
+
+    echo generateAnalyticsScript();
+```
+
+You could do the same to create the other scripts by using the appropriate generators.
+
+#### With the Mysqli driver
+
+##### Query the api
+
+First you need to query the api to warmup the cache in a Mysql table :
+
+```php
+    use Dekalee\AdbackAnalytics\Client\Client;
+    use Dekalee\AdbackAnalytics\Driver\MysqliScriptCache;
+    use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
+
+    function createApiCache()
+    {
+        $client = new Client();
+        $connection = new \mysqli('your-database-host', 'login', 'password', 'your-database');
+        $cache = new MysqliScriptCache($connection);
+
+        $query = new ScriptUrlQuery($client, $cache, 'your-token');
+        $query->execute();
+    }
+
+    createApiCache();
+```
+
+##### Generate the scripts
+
+In your page, preferably in the `<head>`, use the generator to create the script :
+
+```php
+    use Dekalee\AdbackAnalytics\Generator\AnalyticsScriptGenerator;
+    use Dekalee\AdbackAnalytics\Driver\PdoScriptCache;
+
+
+    function generateAnalyticsScript()
+    {
+        $connection = new \mysqli('your-database-host', 'login', 'password', 'your-database');
+        $cache = new MysqliScriptCache($connection);
         $generator = new AnalyticsScriptGenerator($cache);
 
         return $generator->generate();
