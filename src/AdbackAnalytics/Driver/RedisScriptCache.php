@@ -62,7 +62,7 @@ class RedisScriptCache implements ScriptCacheInterface
      */
     public function isMessageConfigured()
     {
-        return $this->redis->exists('adback_message_url');
+        return $this->redis->exists('adback_message_script');
     }
 
     /**
@@ -70,7 +70,7 @@ class RedisScriptCache implements ScriptCacheInterface
      */
     public function isAutopromoBannerConfigured()
     {
-        return $this->redis->exists('adback_autopromo_banner_url');
+        return $this->redis->exists('adback_autopromo_banner_script');
     }
 
     /**
