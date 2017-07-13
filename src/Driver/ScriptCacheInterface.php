@@ -1,6 +1,6 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Driver;
+namespace Adback\ApiClient\Driver;
 
 /**
  * Interface ScriptCacheInterface

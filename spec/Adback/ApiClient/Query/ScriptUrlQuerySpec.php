@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Dekalee\AdbackAnalytics\Query;
+namespace spec\Adback\ApiClient\Query;
 
-use Dekalee\AdbackAnalytics\Client\Client;
-use Dekalee\AdbackAnalytics\Client\Response;
-use Dekalee\AdbackAnalytics\Driver\ScriptCacheInterface;
-use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
+use Adback\ApiClient\Client\Client;
+use Adback\ApiClient\Client\Response;
+use Adback\ApiClient\Driver\ScriptCacheInterface;
+use Adback\ApiClient\Query\ScriptUrlQuery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

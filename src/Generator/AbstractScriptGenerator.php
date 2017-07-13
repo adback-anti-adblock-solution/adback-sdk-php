@@ -1,8 +1,8 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Generator;
+namespace Adback\ApiClient\Generator;
 
-use Dekalee\AdbackAnalytics\Driver\ScriptCacheInterface;
+use Adback\ApiClient\Driver\ScriptCacheInterface;
 
 /**
  * Class AbstractScriptGenerator

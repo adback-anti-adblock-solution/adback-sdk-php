@@ -1,23 +1,23 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Generator;
+namespace Adback\ApiClient\Generator;
 
 /**
- * Class MessageScriptGenerator
+ * Class AutopromoBannerScriptGenerator
  */
-class MessageScriptGenerator extends AbstractScriptGenerator implements ScriptGeneratorInterface
+class AutopromoBannerScriptGenerator extends AbstractScriptGenerator implements ScriptGeneratorInterface
 {
     /**
      * @return string
      */
     public function generate()
     {
-        if (!$this->cache->isMessageConfigured()) {
+        if (!$this->cache->isAutopromoBannerConfigured()) {
             return '';
         }
 
-        $url = $this->cache->getMessageUrl();
-        $script = $this->cache->getMessageScript();
+        $url = $this->cache->getAutopromoBannerUrl();
+        $script = $this->cache->getAutopromoBannerScript();
 
         $script = <<<EOS
 (function (a,d){var s,t;s=d.createElement('script');

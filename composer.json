@@ -1,6 +1,6 @@
 {
-    "name": "dekalee/adback-analytics",
-    "description": "A php lib to call the AdBack api",
+    "name": "adback/adback-sdk-php",
+    "description": "sdk php to call AdBack api",
     "type": "library",
     "license": "Apache-2.0",
     "require": {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Dekalee\\AdbackAnalytics\\": "src/AdbackAnalytics"
+            "Adback\\ApiClient\\": "src"
         }
     },
     "authors": [
