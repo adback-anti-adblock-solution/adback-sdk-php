@@ -1,4 +1,4 @@
-Adback/Analytics
+Adback/ApiClient
 ================
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dekalee/adback-analytics/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dekalee/adback-analytics/?branch=master)
