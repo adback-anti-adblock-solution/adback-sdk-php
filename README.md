@@ -1,4 +1,4 @@
-Adback/Analytics
+Adback/ApiClient
 ================
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/dekalee/adback-analytics/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/dekalee/adback-analytics/?branch=master)
@@ -11,7 +11,7 @@ Adback/Analytics
 This PHP library will call the AdBack API and will generate the JavaScript tag
 that should be placed on all the pages.
 
-See [the AdBack website](http://adback.co) for more informations.
+See [the AdBack website](https://www.adback.co/en/) for more informations.
 
 See [the AdBack documentation](http://support.adback.co/) for an installation guide.
 
@@ -41,9 +41,9 @@ Use composer to install the lib :
 First you need to query the api to warmup the cache in a Redis data store :
 
 ```php
-    use Dekalee\AdbackAnalytics\Client\Client;
-    use Dekalee\AdbackAnalytics\Driver\RedisScriptCache;
-    use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
+    use Adback\ApiClient\Client\Client;
+    use Adback\ApiClient\Driver\RedisScriptCache;
+    use Adback\ApiClient\Query\ScriptUrlQuery;
 
     function createApiCache()
     {
@@ -64,8 +64,8 @@ First you need to query the api to warmup the cache in a Redis data store :
 In your page, preferably in the `<head>`, use the generator to create the script :
 
 ```php
-    use Dekalee\AdbackAnalytics\Driver\RedisScriptCache;
-    use Dekalee\AdbackAnalytics\Generator\AnalyticsScriptGenerator;
+    use Adback\ApiClient\Driver\RedisScriptCache;
+    use Adback\ApiClient\Generator\AnalyticsScriptGenerator;
 
     function generateAnalyticsScript()
     {
@@ -99,9 +99,9 @@ To create the table used to store the data in MySQL, run the query:
 First you need to query the api to warmup the cache in a Mysql table :
 
 ```php
-    use Dekalee\AdbackAnalytics\Client\Client;
-    use Dekalee\AdbackAnalytics\Driver\PdoScriptCache;
-    use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
+    use Adback\ApiClient\Client\Client;
+    use Adback\ApiClient\Driver\PdoScriptCache;
+    use Adback\ApiClient\Query\ScriptUrlQuery;
 
     function createApiCache()
     {
@@ -121,8 +121,8 @@ First you need to query the api to warmup the cache in a Mysql table :
 In your page, preferably in the `<head>`, use the generator to create the script :
 
 ```php
-    use Dekalee\AdbackAnalytics\Generator\AnalyticsScriptGenerator;
-    use Dekalee\AdbackAnalytics\Driver\PdoScriptCache;
+    use Adback\ApiClient\Generator\AnalyticsScriptGenerator;
+    use Adback\ApiClient\Driver\PdoScriptCache;
 
 
     function generateAnalyticsScript()
@@ -146,9 +146,9 @@ You could do the same to create the other scripts by using the appropriate gener
 First you need to query the api to warmup the cache in a Mysql table :
 
 ```php
-    use Dekalee\AdbackAnalytics\Client\Client;
-    use Dekalee\AdbackAnalytics\Driver\MysqliScriptCache;
-    use Dekalee\AdbackAnalytics\Query\ScriptUrlQuery;
+    use Adback\ApiClient\Client\Client;
+    use Adback\ApiClient\Driver\MysqliScriptCache;
+    use Adback\ApiClient\Query\ScriptUrlQuery;
 
     function createApiCache()
     {
@@ -168,8 +168,8 @@ First you need to query the api to warmup the cache in a Mysql table :
 In your page, preferably in the `<head>`, use the generator to create the script :
 
 ```php
-    use Dekalee\AdbackAnalytics\Generator\AnalyticsScriptGenerator;
-    use Dekalee\AdbackAnalytics\Driver\PdoScriptCache;
+    use Adback\ApiClient\Generator\AnalyticsScriptGenerator;
+    use Adback\ApiClient\Driver\PdoScriptCache;
 
 
     function generateAnalyticsScript()

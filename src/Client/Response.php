@@ -1,6 +1,6 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Client;
+namespace Adback\ApiClient\Client;
 
 /**
  * Class Response
@@ -14,7 +14,7 @@ class Response
      */
     public function __construct($body)
     {
-        $this->body =  $body;
+        $this->body = $body;
     }
 
     /**

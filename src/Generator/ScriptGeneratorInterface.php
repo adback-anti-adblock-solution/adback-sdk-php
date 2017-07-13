@@ -1,6 +1,6 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Generator;
+namespace Adback\ApiClient\Generator;
 
 /**
  * Interface ScriptGeneratorInterface

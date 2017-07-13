@@ -1,9 +1,9 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Query;
+namespace Adback\ApiClient\Query;
 
-use Dekalee\AdbackAnalytics\Client\Client;
-use Dekalee\AdbackAnalytics\Driver\ScriptCacheInterface;
+use Adback\ApiClient\Client\Client;
+use Adback\ApiClient\Driver\ScriptCacheInterface;
 
 /**
  * Class ScriptUrlQuery

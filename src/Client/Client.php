@@ -1,6 +1,6 @@
 <?php
 
-namespace Dekalee\AdbackAnalytics\Client;
+namespace Adback\ApiClient\Client;
 
 /**
  * Class Client
