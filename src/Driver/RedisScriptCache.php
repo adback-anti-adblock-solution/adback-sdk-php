@@ -122,6 +122,14 @@ class RedisScriptCache implements ScriptCacheInterface
     }
 
     /**
+     * @return bool
+     */
+    public function isProductConfigured()
+    {
+        return $this->redis->exists('adback_product_script');
+    }
+
+    /**
      * @param string $domain
      */
     public function setProductUrl($domain)
