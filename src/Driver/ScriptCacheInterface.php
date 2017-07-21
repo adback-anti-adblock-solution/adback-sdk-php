@@ -73,6 +73,11 @@ interface ScriptCacheInterface
     public function getAutopromoBannerUrl();
 
     /**
+     * @return bool
+     */
+    public function isProductConfigured();
+
+    /**
      * @param string $domain
      */
     public function setProductUrl($domain);

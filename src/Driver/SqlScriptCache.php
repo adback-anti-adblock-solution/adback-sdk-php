@@ -121,6 +121,14 @@ abstract class SqlScriptCache
     }
 
     /**
+     * @return bool
+     */
+    public function isProductConfigured()
+    {
+        return null != $this->get(self::ADBACK_PRODUCT_SCRIPT);
+    }
+
+    /**
      * @param string $domain
      */
     public function setProductUrl($domain)
