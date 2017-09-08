@@ -5,6 +5,7 @@ namespace spec\Adback\ApiClient\Query;
 use Adback\ApiClient\Client\Client;
 use Adback\ApiClient\Client\Response;
 use Adback\ApiClient\Driver\ScriptCacheInterface;
+use Adback\ApiClient\Query\QueryInterface;
 use Adback\ApiClient\Query\ScriptUrlQuery;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -21,6 +22,11 @@ class ScriptUrlQuerySpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType(ScriptUrlQuery::CLASS);
+    }
+
+    function it_should_be_a_query()
+    {
+        $this->shouldHaveType(QueryInterface::CLASS);
     }
 
     function it_should_call_script_api_and_store_answer(

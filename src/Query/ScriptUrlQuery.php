@@ -8,7 +8,7 @@ use Adback\ApiClient\Driver\ScriptCacheInterface;
 /**
  * Class ScriptUrlQuery
  */
-class ScriptUrlQuery
+class ScriptUrlQuery implements QueryInterface
 {
     protected $cache;
     protected $token;
