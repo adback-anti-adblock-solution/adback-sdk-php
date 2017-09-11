@@ -33,14 +33,19 @@ interface ScriptCacheInterface
     public function getAnalyticsScript();
 
     /**
-     * @return bool
+     * @param string $code
      */
-    public function isMessageConfigured();
+    public function setAnalyticsCode($code);
+
+    /**
+     * @return string
+     */
+    public function getAnalyticsCode();
 
     /**
      * @return bool
      */
-    public function isAutopromoBannerConfigured();
+    public function isMessageConfigured();
 
     /**
      * @param string $domain
@@ -63,6 +68,21 @@ interface ScriptCacheInterface
     public function getMessageScript();
 
     /**
+     * @param string $code
+     */
+    public function setMessageCode($code);
+
+    /**
+     * @return string
+     */
+    public function getMessageCode();
+
+    /**
+     * @return bool
+     */
+    public function isAutopromoBannerConfigured();
+
+    /**
      * @param string $domain
      */
     public function setAutopromoBannerUrl($domain);
@@ -73,9 +93,24 @@ interface ScriptCacheInterface
     public function getAutopromoBannerUrl();
 
     /**
-     * @return bool
+     * @param string $script
      */
-    public function isProductConfigured();
+    public function setAutopromoBannerScript($script);
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerScript();
+
+    /**
+     * @param string $code
+     */
+    public function setAutopromoBannerCode($code);
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerCode();
 
     /**
      * @param string $domain
@@ -90,23 +125,52 @@ interface ScriptCacheInterface
     /**
      * @param string $script
      */
-    public function setAutopromoBannerScript($script);
-
-    /**
-     * @return string
-     */
-    public function getAutopromoBannerScript();
-
-
-    /**
-     * @param string $script
-     */
     public function setProductScript($script);
 
     /**
      * @return string
      */
     public function getProductScript();
+
+    /**
+     * @param string $code
+     */
+    public function setProductCode($code);
+
+    /**
+     * @return string
+     */
+    public function getProductCode();
+
+    /**
+     * @return bool
+     */
+    public function isProductConfigured();
+
+    /**
+     * @param string $script
+     */
+    public function setIabBannerScript($script);
+
+    /**
+     * @return string
+     */
+    public function getIabBannerScript();
+
+    /**
+     * @param string $code
+     */
+    public function setIabBannerCode($code);
+
+    /**
+     * @return string
+     */
+    public function getIabBannerCode();
+
+    /**
+     * @return bool
+     */
+    public function isIabBannerConfigured();
 
     /**
      * Clear analytics data
@@ -127,4 +191,9 @@ interface ScriptCacheInterface
      * Clear autopromo banner data
      */
     public function clearProductData();
+
+    /**
+     * Clear autopromo banner data
+     */
+    public function clearIabBannerData();
 }

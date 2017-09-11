@@ -9,12 +9,18 @@ abstract class SqlScriptCache
 {
     const ADBACK_ANALYTICS_SCRIPT = 'adback_analytics_script';
     const ADBACK_ANALYTICS_URL = 'adback_analytics_url';
+    const ADBACK_ANALYTICS_CODE = 'adback_analytics_code';
     const ADBACK_MESSAGE_SCRIPT = 'adback_message_script';
     const ADBACK_MESSAGE_URL = 'adback_message_url';
+    const ADBACK_MESSAGE_CODE = 'adback_message_code';
     const ADBACK_AUTOPROMO_BANNER_SCRIPT = 'adback_autopromo_banner_script';
     const ADBACK_AUTOPROMO_BANNER_URL = 'adback_autopromo_banner_url';
+    const ADBACK_AUTOPROMO_BANNER_CODE = 'adback_autopromo_banner_code';
     const ADBACK_PRODUCT_SCRIPT = 'adback_product_script';
     const ADBACK_PRODUCT_URL = 'adback_product_url';
+    const ADBACK_PRODUCT_CODE = 'adback_product_code';
+    const ADBACK_IAB_BANNER_SCRIPT = 'adback_iab_banner_script';
+    const ADBACK_IAB_BANNER_CODE = 'adback_iab_banner_code';
 
     /**
      * @return bool
@@ -57,19 +63,27 @@ abstract class SqlScriptCache
     }
 
     /**
-     * @return bool
+     * @param string $code
      */
-    public function isMessageConfigured()
+    public function setAnalyticsCode($code)
     {
-        return null != $this->get(self::ADBACK_MESSAGE_SCRIPT);
+        $this->set(self::ADBACK_ANALYTICS_CODE, $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnalyticsCode()
+    {
+        return $this->get(self::ADBACK_ANALYTICS_CODE);
     }
 
     /**
      * @return bool
      */
-    public function isAutopromoBannerConfigured()
+    public function isMessageConfigured()
     {
-        return null != $this->get(self::ADBACK_AUTOPROMO_BANNER_SCRIPT);
+        return null != $this->get(self::ADBACK_MESSAGE_SCRIPT);
     }
 
     /**
@@ -105,6 +119,30 @@ abstract class SqlScriptCache
     }
 
     /**
+     * @param string $code
+     */
+    public function setMessageCode($code)
+    {
+        $this->set(self::ADBACK_MESSAGE_CODE, $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageCode()
+    {
+        return $this->get(self::ADBACK_MESSAGE_CODE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAutopromoBannerConfigured()
+    {
+        return null != $this->get(self::ADBACK_AUTOPROMO_BANNER_SCRIPT);
+    }
+
+    /**
      * @param string $domain
      */
     public function setAutopromoBannerUrl($domain)
@@ -118,6 +156,78 @@ abstract class SqlScriptCache
     public function getAutopromoBannerUrl()
     {
         return $this->get(self::ADBACK_AUTOPROMO_BANNER_URL);
+    }
+
+    /**
+     * @param string $script
+     */
+    public function setAutopromoBannerScript($script)
+    {
+        $this->set(self::ADBACK_AUTOPROMO_BANNER_SCRIPT, $script);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerScript()
+    {
+        return $this->get(self::ADBACK_AUTOPROMO_BANNER_SCRIPT);
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setAutopromoBannerCode($code)
+    {
+        $this->set(self::ADBACK_AUTOPROMO_BANNER_CODE, $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerCode()
+    {
+        return $this->get(self::ADBACK_AUTOPROMO_BANNER_CODE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIabBannerConfigured()
+    {
+        return null != $this->get(self::ADBACK_IAB_BANNER_SCRIPT);
+    }
+
+    /**
+     * @param string $script
+     */
+    public function setIabBannerScript($script)
+    {
+        $this->set(self::ADBACK_IAB_BANNER_SCRIPT, $script);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIabBannerScript()
+    {
+        return $this->get(self::ADBACK_IAB_BANNER_SCRIPT);
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setIabBannerCode($code)
+    {
+        $this->set(self::ADBACK_IAB_BANNER_CODE, $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIabBannerCode()
+    {
+        return $this->get(self::ADBACK_IAB_BANNER_CODE);
     }
 
     /**
@@ -147,22 +257,6 @@ abstract class SqlScriptCache
     /**
      * @param string $script
      */
-    public function setAutopromoBannerScript($script)
-    {
-        $this->set(self::ADBACK_AUTOPROMO_BANNER_SCRIPT, $script);
-    }
-
-    /**
-     * @return string
-     */
-    public function getAutopromoBannerScript()
-    {
-        return $this->get(self::ADBACK_AUTOPROMO_BANNER_SCRIPT);
-    }
-
-    /**
-     * @param string $script
-     */
     public function setProductScript($script)
     {
         $this->set(self::ADBACK_PRODUCT_SCRIPT, $script);
@@ -177,12 +271,29 @@ abstract class SqlScriptCache
     }
 
     /**
+     * @param string $code
+     */
+    public function setProductCode($code)
+    {
+        $this->set(self::ADBACK_PRODUCT_CODE, $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductCode()
+    {
+        return $this->get(self::ADBACK_PRODUCT_CODE);
+    }
+
+    /**
      * Clear analytics data
      */
     public function clearAnalyticsData()
     {
         $this->clear(self::ADBACK_ANALYTICS_SCRIPT);
         $this->clear(self::ADBACK_ANALYTICS_URL);
+        $this->clear(self::ADBACK_ANALYTICS_CODE);
     }
 
     /**
@@ -192,6 +303,7 @@ abstract class SqlScriptCache
     {
         $this->clear(self::ADBACK_MESSAGE_SCRIPT);
         $this->clear(self::ADBACK_MESSAGE_URL);
+        $this->clear(self::ADBACK_MESSAGE_CODE);
     }
 
     /**
@@ -201,6 +313,7 @@ abstract class SqlScriptCache
     {
         $this->clear(self::ADBACK_AUTOPROMO_BANNER_SCRIPT);
         $this->clear(self::ADBACK_AUTOPROMO_BANNER_URL);
+        $this->clear(self::ADBACK_AUTOPROMO_BANNER_CODE);
     }
 
     /**
@@ -210,6 +323,16 @@ abstract class SqlScriptCache
     {
         $this->clear(self::ADBACK_PRODUCT_SCRIPT);
         $this->clear(self::ADBACK_PRODUCT_URL);
+        $this->clear(self::ADBACK_PRODUCT_CODE);
+    }
+
+    /**
+     * Clear autopromo banner data
+     */
+    public function clearIabBannerData()
+    {
+        $this->clear(self::ADBACK_IAB_BANNER_SCRIPT);
+        $this->clear(self::ADBACK_IAB_BANNER_CODE);
     }
 
     /**

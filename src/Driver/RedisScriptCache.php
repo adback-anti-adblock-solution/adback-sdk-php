@@ -22,7 +22,7 @@ class RedisScriptCache implements ScriptCacheInterface
      */
     public function isAnalyticsConfigured()
     {
-        return $this->redis->exists('adback_analytics_url');
+        return $this->redis->exists('adback_analytics_script');
     }
 
     /**
@@ -55,6 +55,22 @@ class RedisScriptCache implements ScriptCacheInterface
     public function getAnalyticsScript()
     {
         return $this->redis->get('adback_analytics_script');
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setAnalyticsCode($code)
+    {
+        $this->redis->set('adback_analytics_code', $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAnalyticsCode()
+    {
+        return $this->redis->get('adback_analytics_code');
     }
 
     /**
@@ -106,6 +122,22 @@ class RedisScriptCache implements ScriptCacheInterface
     }
 
     /**
+     * @param string $code
+     */
+    public function setMessageCode($code)
+    {
+        $this->redis->set('adback_message_code', $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageCode()
+    {
+        return $this->redis->get('adback_message_code');
+    }
+
+    /**
      * @param string $domain
      */
     public function setAutopromoBannerUrl($domain)
@@ -119,6 +151,38 @@ class RedisScriptCache implements ScriptCacheInterface
     public function getAutopromoBannerUrl()
     {
         return $this->redis->get('adback_autopromo_banner_url');
+    }
+
+    /**
+     * @param string $script
+     */
+    public function setAutopromoBannerScript($script)
+    {
+        $this->redis->set('adback_autopromo_banner_script', $script);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerScript()
+    {
+        return $this->redis->get('adback_autopromo_banner_script');
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setAutopromoBannerCode($code)
+    {
+        $this->redis->set('adback_autopromo_banner_code', $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAutopromoBannerCode()
+    {
+        return $this->redis->get('adback_autopromo_banner_code');
     }
 
     /**
@@ -148,22 +212,6 @@ class RedisScriptCache implements ScriptCacheInterface
     /**
      * @param string $script
      */
-    public function setAutopromoBannerScript($script)
-    {
-        $this->redis->set('adback_autopromo_banner_script', $script);
-    }
-
-    /**
-     * @return string
-     */
-    public function getAutopromoBannerScript()
-    {
-        return $this->redis->get('adback_autopromo_banner_script');
-    }
-
-    /**
-     * @param string $script
-     */
     public function setProductScript($script)
     {
         $this->redis->set('adback_product_script', $script);
@@ -178,11 +226,67 @@ class RedisScriptCache implements ScriptCacheInterface
     }
 
     /**
+     * @param string $code
+     */
+    public function setProductCode($code)
+    {
+        $this->redis->set('adback_product_code', $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductCode()
+    {
+        return $this->redis->get('adback_product_code');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIabBannerConfigured()
+    {
+        return $this->redis->exists('adback_iab_banner_script');
+    }
+
+    /**
+     * @param string $script
+     */
+    public function setIabBannerScript($script)
+    {
+        $this->redis->set('adback_iab_banner_script', $script);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIabBannerScript()
+    {
+        return $this->redis->get('adback_iab_banner_script');
+    }
+
+    /**
+     * @param string $code
+     */
+    public function setIabBannerCode($code)
+    {
+        $this->redis->set('adback_iab_banner_code', $code);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIabBannerCode()
+    {
+        return $this->redis->get('adback_iab_banner_code');
+    }
+
+    /**
      * Clear analytics data
      */
     public function clearAnalyticsData()
     {
-        $this->redis->del('adback_analytics_url', 'adback_analytics_script');
+        $this->redis->del('adback_analytics_url', 'adback_analytics_script', 'adback_analytics_code');
     }
 
     /**
@@ -190,7 +294,7 @@ class RedisScriptCache implements ScriptCacheInterface
      */
     public function clearMessageData()
     {
-        $this->redis->del('adback_message_url', 'adback_message_script');
+        $this->redis->del('adback_message_url', 'adback_message_script', 'adback_message_code');
     }
 
     /**
@@ -198,7 +302,7 @@ class RedisScriptCache implements ScriptCacheInterface
      */
     public function clearAutopromoBannerData()
     {
-        $this->redis->del('adback_autopromo_banner_url', 'adback_autopromo_banner_script');
+        $this->redis->del('adback_autopromo_banner_url', 'adback_autopromo_banner_script', 'adback_autopromo_banner_code');
     }
 
     /**
@@ -206,7 +310,14 @@ class RedisScriptCache implements ScriptCacheInterface
      */
     public function clearProductData()
     {
-        $this->redis->del('adback_product_url', 'adback_product_script');
+        $this->redis->del('adback_product_url', 'adback_product_script', 'adback_product_code');
     }
 
+    /**
+     * Clear autopromo banner data
+     */
+    public function clearIabBannerData()
+    {
+        $this->redis->del('adback_iab_banner_url', 'adback_iab_banner_script', 'adback_iab_banner_code');
+    }
 }
