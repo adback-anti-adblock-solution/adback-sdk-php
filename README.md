@@ -212,9 +212,9 @@ First you need to query the full script api to warmup the cache in a Redis data 
     createApiCache();
 ```
 
-#### Generate the scripts
+#### Generate the code
 
-In your page, preferably in the `<head>`, use the generator to create the script :
+In your page, use the generator to create the code :
 
 ```php
     use Adback\ApiClient\Driver\RedisScriptCache;
