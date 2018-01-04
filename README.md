@@ -185,3 +185,52 @@ In your page, preferably in the `<head>`, use the generator to create the script
 ```
 
 You could do the same to create the other scripts by using the appropriate generators.
+
+
+### Usage with Full script save and Redis
+
+#### Query the api
+
+First you need to query the full script api to warmup the cache in a Redis data store :
+
+```php
+    use Adback\ApiClient\Client\Client;
+    use Adback\ApiClient\Driver\RedisScriptCache;
+    use Adback\ApiClient\Query\FullScriptQuery;
+
+    function createApiCache()
+    {
+        $client = new Client();
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1');
+        $redisCache = new RedisScriptCache($redis);
+
+        $query = new FullScriptQuery($client, $redisCache, 'your-token');
+        $query->execute();
+    }
+
+    createApiCache();
+```
+
+#### Generate the code
+
+In your page, use the generator to create the code :
+
+```php
+    use Adback\ApiClient\Driver\RedisScriptCache;
+    use Adback\ApiClient\Generator\AnalyticsCodeGenerator;
+
+    function generateAnalyticsCode()
+    {
+        $redis = new \Redis();
+        $redis->connect('127.0.0.1');
+        $redisCache = new RedisScriptCache($redis);
+        $generator = new AnalyticsCodeGenerator($redisCache);
+
+        return $generator->generate();
+    }
+
+    echo generateAnalyticsCode();
+```
+
+You could do the same to create the other scripts by using the appropriate generators.
