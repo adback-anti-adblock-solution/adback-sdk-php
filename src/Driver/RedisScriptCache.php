@@ -282,6 +282,22 @@ class RedisScriptCache implements ScriptCacheInterface
     }
 
     /**
+     * @param string $domain
+     */
+    public function setIabBannerUrl($domain)
+    {
+        $this->redis->set('adback_iab_banner_url', $domain);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIabBannerUrl()
+    {
+        return $this->redis->get('adback_iab_banner_url');
+    }
+
+    /**
      * Clear analytics data
      */
     public function clearAnalyticsData()

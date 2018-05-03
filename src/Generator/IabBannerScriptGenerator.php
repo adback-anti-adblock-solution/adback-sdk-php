@@ -16,7 +16,7 @@ class IabBannerScriptGenerator extends AbstractScriptGenerator implements Script
             return '';
         }
 
-        $url = $this->cache->getAutopromoBannerUrl();
+        $url = $this->cache->getIabBannerUrl();
         $script = $this->cache->getIabBannerScript();
 
         $script = <<<EOS
