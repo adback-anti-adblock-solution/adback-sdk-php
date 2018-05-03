@@ -44,6 +44,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
             'autopromo_banner_script' => 'autopromo_banner_script',
             'product_domain' => 'product_domain',
             'product_script' => 'product_script',
+            'iab_banner_domain' => 'iab_banner_domain',
+            'iab_banner_script' => 'iab_banner_script',
         ]));
         $response->getStatusCode()->willReturn(200);
 
@@ -55,6 +57,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setAutopromoBannerScript('autopromo_banner_script')->shouldBeCalled();
         $cache->setProductUrl('product_domain')->shouldBeCalled();
         $cache->setProductScript('product_script')->shouldBeCalled();
+        $cache->setIabBannerUrl('iab_banner_domain')->shouldBeCalled();
+        $cache->setIabBannerScript('iab_banner_script')->shouldBeCalled();
 
         $this->execute();
     }
@@ -78,6 +82,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->clearAnalyticsData()->shouldBeCalled();
         $cache->clearAutopromoBannerData()->shouldBeCalled();
         $cache->clearProductData()->shouldBeCalled();
+        $cache->clearIabBannerData()->shouldBeCalled();
 
         $this->execute();
     }
@@ -101,6 +106,7 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->clearMessageData()->shouldBeCalled();
         $cache->clearAutopromoBannerData()->shouldBeCalled();
         $cache->clearProductData()->shouldBeCalled();
+        $cache->clearIabBannerData()->shouldBeCalled();
 
         $this->execute();
     }
@@ -121,6 +127,8 @@ class ScriptUrlQuerySpec extends ObjectBehavior
         $cache->setAutopromoBannerScript(Argument::any())->shouldNotBeCalled();
         $cache->setProductUrl(Argument::any())->shouldNotBeCalled();
         $cache->setProductScript(Argument::any())->shouldNotBeCalled();
+        $cache->setIabBannerUrl(Argument::any())->shouldNotBeCalled();
+        $cache->setIabBannerScript(Argument::any())->shouldNotBeCalled();
 
         $this->execute();
     }
