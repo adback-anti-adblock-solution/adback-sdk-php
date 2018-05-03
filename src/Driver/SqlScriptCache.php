@@ -21,6 +21,7 @@ abstract class SqlScriptCache
     const ADBACK_PRODUCT_CODE = 'adback_product_code';
     const ADBACK_IAB_BANNER_SCRIPT = 'adback_iab_banner_script';
     const ADBACK_IAB_BANNER_CODE = 'adback_iab_banner_code';
+    const ADBACK_IAB_BANNER_URL = 'adback_iab_banner_url';
 
     /**
      * @return bool
@@ -228,6 +229,22 @@ abstract class SqlScriptCache
     public function getIabBannerCode()
     {
         return $this->get(self::ADBACK_IAB_BANNER_CODE);
+    }
+
+    /**
+     * @param string $domain
+     */
+    public function setIabBannerUrl($domain)
+    {
+        $this->set(self::ADBACK_IAB_BANNER_URL, $domain);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIabBannerUrl()
+    {
+        return $this->get(self::ADBACK_IAB_BANNER_URL);
     }
 
     /**

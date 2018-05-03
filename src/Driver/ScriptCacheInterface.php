@@ -168,6 +168,16 @@ interface ScriptCacheInterface
     public function getIabBannerCode();
 
     /**
+     * @param string $domain
+     */
+    public function setIabBannerUrl($domain);
+
+    /**
+     * @return string
+     */
+    public function getIabBannerUrl();
+
+    /**
      * @return bool
      */
     public function isIabBannerConfigured();

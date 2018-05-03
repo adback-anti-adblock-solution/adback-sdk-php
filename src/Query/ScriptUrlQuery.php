@@ -72,6 +72,13 @@ class ScriptUrlQuery implements QueryInterface
             $this->cache->clearAutopromoBannerData();
         }
 
+        if (array_key_exists('iab_banner_script', $scriptUrlFacade) && null != $scriptUrlFacade['iab_banner_script']) {
+            $this->cache->setIabBannerUrl($scriptUrlFacade['iab_banner_domain']);
+            $this->cache->setIabBannerScript($scriptUrlFacade['iab_banner_script']);
+        } else {
+            $this->cache->clearIabBannerData();
+        }
+
         if (array_key_exists('product_script', $scriptUrlFacade) && null != $scriptUrlFacade['product_script']) {
             $this->cache->setProductUrl($scriptUrlFacade['product_domain']);
             $this->cache->setProductScript($scriptUrlFacade['product_script']);
