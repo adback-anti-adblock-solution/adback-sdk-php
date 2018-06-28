@@ -31,7 +31,7 @@ Usage Exemple
 Use composer to install the lib :
 
 ```php
-    composer require dekalee/adback-analytics
+    composer require adback/adback-sdk-php
 ```
 
 ### Usage with Redis
