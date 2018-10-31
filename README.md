@@ -89,7 +89,7 @@ You could do the same to create the other scripts by using the appropriate gener
 To create the table used to store the data in MySQL, run the query:
 
 ```sql
-    CREATE TABLE adback_cache_table( our_key varchar(255), our_value varchar(255));
+    CREATE TABLE adback_cache_table(our_key varchar(255), our_value varchar(255));
 ```
 
 #### With the PDO driver
